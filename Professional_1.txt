@@ -1,0 +1,64 @@
+Function Notes
+
+GetOrder:
+    Function GetOrder(QorSubHeading)
+        Dim iter
+        Dim filter
+        For Each iter In QorSubHeading.Categories
+            If iter.CategoryType = 1 Then
+                filter = filter + GetOrder(iter)
+            Else
+                filter = filter + CCategorical(iter)
+            End If
+        Next
+        GetOrder = filter
+    End Function
+
+for each stub in the category if the stub type = 1 then make than add that to the filter 
+if the stub type is not equal to 1 then you make that a categorical and add to the filter
+
+
+iif:
+Returns the value passed as the TruePart parameter if the expression evaluates to True, otherwise returns the value passed as the FalsePart parameter.
+IIf(Val, TruePart, FalsePart)
+
+
+CCategorical:
+    converts a value of any data type to a catgeorical valiue
+    CCategorical(Val)
+
+
+Debug Log - this would put a string XYZ as an output line in the output window:
+    if IOM.info.IsDebug then
+        Debug.Log("XYZ")
+        Debug.Log(TextVar)
+        Debug.Log(Ctext(categorical))
+        Debug.MsgBox("This will pop up")
+    end if 
+
+    Transform Multi punch to a Single:
+        Flying J: DedicatedFuelBrand
+    		DedicatedFuelBrand.Validation.MaxValue = 1
+		    DedicatedFuelBrand.Categories[..].Style.Control = &H0006
+
+        https://lrw.jiveon.com/docs/DOC-2495
+
+
+Err & RI (adding custom instructions and errors):
+    You can add custom properties Err and RI that are built in the shell
+
+    ex: Flying J LoyaltyFeatureRank
+    LoyaltyFeatureRank "" 
+    [
+        RI = "LoyaltyFeatureRankRI",
+        Err = "LoyaltyFeatureRankErr"
+    ]
+
+    LoyaltyFeatureRankRI "Enter numeric responses below."
+    info;
+    
+    LoyaltyFeatureRankErr "Please make sure your ranking is valid"
+    info;
+
+
+    

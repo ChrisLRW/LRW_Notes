@@ -1,0 +1,38 @@
+07/09/19
+Data Processing
+
+
+Logging Section - defines the parameteers for the logging component
+Metadata seciont - used to define new questions and variables in the metadata using mrScriptMetadata (use 90%)
+Event - (i.e onclick etc...)
+	OnBeforeJobStart  
+    OnJobStart - created dim variable 
+    OnNextCase - most common. used to define procedural code that is to be appied to each case. For example, code 
+        to clean Data
+
+Open with Command line: 
+    Shift Right click 
+    dmsrun "name.dms"
+
+'All the stuff for routing basically go here 
+Event(OnNextCase, "")
+	
+	if ModeOfTravel =* {Subway_Under} then
+		ModeOfTravel = {WrongAnswer}
+	end if 
+
+End Event
+
+' =* > ContainsAny > = 
+
+
+outputsource
+metadatatype = none
+datacollection 
+create your own "name.ddf" 
+and in the metadataoutputname = "name.mdd" make sure these are the same name just for organization
+and you dont have to create this mdd it will create it when you run the process
+
+inputsource 
+metadata location: find the one u want the input off
+case data type = data collection data file

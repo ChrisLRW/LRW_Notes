@@ -1,0 +1,34 @@
+07/08/19
+180760 HP Gamer US Brand Study Active:
+
+
+What is the buisness problem?
+    Better Understand gamers perceptions of the key competitiors in the US PC gaming category
+
+What are the research objectives?
+    What are gamers overall feelings towards the brands?
+    How well do these brands deliver on key emotional and social benefits?
+    How do gamers perceive these brands?
+    What is the competitive position of HP and its competitiors?
+
+Who are we providing service to? 
+    HP?
+
+S8_GamingHoursPerWeek:
+    max should be higher 24 * 7 
+
+DT_HeattoHeadIntro:
+    is this a compare vs ?
+
+C2_BrandRank:
+    whats the psychological purpose for asking C1_MostLikely first then move onto C2_BrandkRank
+    as oppose to just asking them to rank 1 to 3
+
+D4_BrandSimiliarity:
+    Loop Iteration (supprress) its always 3 iterations what is the numbers 7, 10, 11 
+    we should suppress ibuypower when we are asking questions pertaining to it
+    Answer: if current brand assigned is the same brand then just suppress it
+
+E4_CurrentBrand, E5_Previouly Used:
+    Randomize but its asking stuff that they have and theyre trying help 
+    dont randomize!!

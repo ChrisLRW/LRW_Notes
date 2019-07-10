@@ -1,0 +1,46 @@
+Survey Scout: 06/26/19
+
+Survey Scout:
+    -click link you can click left and right to go through the Survey
+    - or uncomment IOM.Info.User9="SurveyScout" in the shell
+    -Ctrl Up or Down to see excel of questions shown
+
+DummyData:
+    click the link and itll automatically populate without having to go left and right
+
+DummyUntilSerial000010:
+    u can have it run 200 cases etc.. (by typing it in the link)
+
+AutoAnsweR: 
+    - Proceed to a certain question (i.e Gender etc...)
+
+Scout is smart enough to check for certain validations (zip code)
+
+Controlling Answer:
+    CustomeQuestion "Name" block fields
+    {
+
+        bSkipSCOUT = true ' this is how you skip a problem 
+
+    }
+
+    If not (IPS_ScoutType =* {Dummy{}}) then
+        OIM.ask()
+    end If
+
+    Scoutrule = "Exact: {No}"
+    ScoutRul = "AgeLong= [1..200]"
+
+    "pass term points" catch all the term points and you wont ahave any term points when automatically running dummy DummyData
+
+Strengths:
+    getting to Question faster
+    quick end to end testing
+    sweeping for crashes
+
+Weaknessses:
+    doesnt check how things look
+    QC Flag terms
+    Timers
+    Device compability
+    

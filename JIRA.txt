@@ -1,0 +1,31 @@
+JIRA: 07/01/19
+
+IPS: use JIRA to talk with teams about issues 
+Log any issues (text changes, images etc..)
+Have docmentaion
+
+Projects: Go on projects -> Type name -> Advanced
+
+There are different types of issues you upload on JIRA
+
+Question:
+i.e S7
+S7 - Ethnicity - Missing Stub 3 and 4 
+
+Blocker = cant continue without fixing
+HIgh - filter issues, logic, assigners etc...
+
+Components: filter the jira tickets
+
+Assignee - the one who gets asiggned the tickets
+
+Description tell the teams to be super decripvtive, Add version number, serial number, etc... with screenshots
+
+
+Change all JIRA tickets at once 
+bulk change -> Next -> Transition to work flow -> ...
+
+uncheck the mail stuff and uncheck the Jira Labs in personal settings 
+
+WebAuthor:
+Jira Tickets ->Submit issues to JIRA

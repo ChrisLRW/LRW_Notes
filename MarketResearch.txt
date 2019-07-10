@@ -1,0 +1,59 @@
+6/25/2019
+
+Make good decisions with the "right" info
+    i.e: "new coke"
+
+LRW = Custom Reaserach Consultants
+
+Greenbook top 50 Most innovative Suppplier in Market Research:
+    LRW = 10
+    Kantar = 1
+    Ipos = 2
+
+Top 50 Market Research Firms (2018):
+    Nielson, NY= 1
+    LRW, LA = 15
+
+Types of reserach:
+    online service
+    CATI - telephone
+    Ethnography
+    Shop Along - go shopping with stuff (i.e why did u grab that can of beans?)
+    IDI - in depth interviews  
+    CAPI - go to developing countries have them take the survey (i.e nigeria) 
+
+The Marketing Mix (5 Ps):
+    products - What should be offered or marketed?
+    price - what is the optimal absolute or relative price?
+    promotion - how effective is the advertising, promotional activites, sales initiatives or pubulications?
+        decide what to advertise, where to advertise and how to ocmmunicate your message.
+    place - 
+    people - who is the target audience?
+
+The Research Proces:
+    Beginning: 
+        client snds rfp (request for profposal) for Research
+    Middle: 
+        Develope and analyze data
+    End: 
+        Present ot client, buisness decision is made.
+
+-Avoid the "Kitchen Sink Syndrome"
+    i.e: can we throw in some questions about this... (no unnecessary qustion)
+-We want to make our surveys smaller and more efficient; sometimes clients are being pressured to reach a "quota" on information
+-Approach from the end to the beggining
+-Business objectives guide the entire process
+
+Qualitative vs Quantitative
+    Qual = Why? how? : Quan = How many? What? Who?
+    i.e toys: qual first = have kids just nteract then do quan for the chunk of info 
+            Quan first = ask question then do qual based on that data
+
+Communities - Hybrid Platform for Qual + Quan
+Appended Data - Big Data
+Web Scraping - Aggregation of publicly avaiable commends (Social media listening)
+
+Q: What is it that we do that other companies cant do in house?
+
+
+Quantiative : Segmenation Research 

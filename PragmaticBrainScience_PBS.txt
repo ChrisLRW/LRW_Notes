@@ -1,0 +1,27 @@
+6/25/2019
+
+PBS - Pragmatic Brain Science
+
+How do we tell how much someone really feels something in a survey?
+
+Stroop Effect (Psyhcology) - 
+    Text are easier than color
+    We are going deeper into our brain when youre doing color 
+
+Rapid Choice (RpC)- measure the response of them. How Long did it take? Created in LRW and Propierty LRW Tool (we patented this)
+    - E and I keys for E = No, I = Yes
+    Why is E = No? I = Yes? 
+        For Lego whatver is making you think u take a while to response and if its immediate you just respond right away
+
+Implicit Identity Measure (IIM) -can track affiinity 
+    - for tracker we can double down on strenghts or figure out what is messing up etc...
+
+MORPHII - emotions, emoticons about stuff 
+    -how "Excited" are you ...
+
+Base-ic - BASE-IC (belonging, appeal, security, exploration) 24 statements divided into 6 statements 
+    -Bi polar question
+    -its not trying to find which side of you are on a spectrum
+    -its randomized stubs that record which point belong to where (they have no relationship) but each question points to a stub but also
+        particularly can point or lean to two buckets as well. 
+

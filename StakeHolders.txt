@@ -1,0 +1,15 @@
+Design: 
+    They grab the data and present it to our clients in a clear, preciese and coherent way
+
+Global Data Colleciton:
+    Gets vendors and ask people to take our surveys
+
+IPS (Integrated Production Services): 
+    Program Surveys and tabulating data
+
+MaDS (marketing and data science):
+    Analyzes what our data is telling us through advance analytics. Project consultants with questions etc...
+
+PBSI (Pragmatic Brain Science Institute): 
+    experts in non conscious research and offer 6 custom methodologies (SVP: Collete Eccleston)
+    only 2 or 3 experts

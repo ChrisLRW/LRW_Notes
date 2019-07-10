@@ -1,0 +1,43 @@
+Custom Properties: 07/01/2019
+
+-Create as many as you need
+-attach them to anything in MDD
+-They are properties of MDD, not variables
+-They remain in the MDD after intervew 
+
+Basics:
+    they can store data of multiple types (text, long, double)
+    More "Object Oriented" because we can create our properties etc..
+    i.e RI = "Standard", RI = "Q4Info" 
+
+
+Syntax:
+
+    Hdata - 
+    [
+        JobNumber = "12345"
+        StudyName = "Tracking"
+    ]
+
+    Flags "QC Flags"
+    ' this is the custom property whihc is the square brackets
+    [
+        PrintRemove = true
+        Shortname = "Flags"
+    ]
+
+Accessing values in routing is in the powerpoint
+
+if a property isnt defined, it will match null or empty string "" so if you mispell a property name it wont crash itll just appear as an empty string or null
+
+Some Standard Properties:
+    GridCol - percent multiplier for grid response column widths
+    qstyle = "custom" - reset.css basically
+    Qtype = "Bipolar" 
+    RemoveSpace = True - keep on the page/blcok items closer together
+
+
+GetcatfilterFromProperyList(IOM, var1, var2, "Name of property")
+Csustom error messagesErr = "Err"
+
+Custom Propertys ppt last slide is challening!!

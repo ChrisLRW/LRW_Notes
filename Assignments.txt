@@ -1,0 +1,34 @@
+Assigners: 07/02/19
+
+Between screener and main we have a bunch of quota checks
+
+RollBacks() is when you remove someone from a quota ... 
+
+theres the If not (QuotaPend...) and If not Iom.debug etc...
+
+Assigners: 
+    Ask the quota to select among eligible items
+    The assignment variable is multi punch. other variables are still single-punch
+    so we would be able to assign certain quotas to different types of question
+
+PendMonde: 
+    qpNormal - default setting for single punch quotas
+    qpRandom - select open categories at qpRandom
+        (if coke and pepsi left jsust select ranodnm)
+    qpLeastfull - selects the fewest completes + plus pending (if theyre both equal it defaults to random)
+    qpLeastfullcomplete - if ones at 40/100 and 40/50 it thinks its equal but caps still work
+
+Multi-step assignments 
+    -select random ones 
+    - priorirty for certain respondents 
+
+Recommendations:
+    Random vs most needed:
+        random is better for reporting less skewing of data
+        most needed keeps assignment more even, fewer interviews to hit minium per brand
+    
+    Slow to program:
+        if each step requires a previous answer because it becomes a unicorn and thats why it is hard
+
+    
+    sometimes we cna pend quotas and all of a sudden one person doesnt hit the quota so what we do is rollback all the quotas we just pended

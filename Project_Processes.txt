@@ -1,0 +1,49 @@
+Project Process:
+
+BRP:
+    Backaward research meeting
+    Issues meeting
+    Pyramid meeting
+
+Pre-Data: 
+    Kickoff Meeitngs:
+        Internal Kickoff
+            Goal: estabish overall vision of Project
+        External Kickoff   
+            Goal: intro the project team to the client 
+
+    Alert Meeting:
+        the meeting where we involved all the other parties (IPS and/or Global Data (field))
+
+    Backwards Research Meeting (BRM):
+        to agree on a plan for measuring the research questions and analyzing the research questions to ensure that the buisness objectives are met.
+        Buisness objective -> Busines questions 
+
+    Questionnaire Developtment:
+        Outline -> Draft Questions -> Internal REview -> Revise & Polish -> Client Review 
+        (project lead usually plays a heavy part in the question Developtment)
+        Some are repeat clients (not reinventing the wheel) we can use old material
+    
+    Issues Meeting Overview: 
+        To make sure the final questionnaire measures the reserach questions/fuffills the business objectives before data collection 
+        -send to IPS to finalized etc... and talk about the issues etc..
+
+
+Data Collection (field): 
+    collect the data via online surveys, CAWI, click streams, panels, etc...
+
+    Data Processing: 
+        Writing Tab Specs
+        Coding, Weighintg, Tab Checkng
+        SPSS file checking
+
+
+Post Data Collection:
+    Finish data collection
+    
+    Pyramid Meeting: Whats the story?
+        collaborative effort to develop an insightful story from the reserach data in order to write a concise "so what" report
+
+    Report:
+        create a visual docment of your findigs and consultion 
+        PAPO report (Important!!!) 
