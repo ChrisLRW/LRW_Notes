@@ -36,7 +36,7 @@ Debug Log - this would put a string XYZ as an output line in the output window:
         Debug.MsgBox("This will pop up")
     end if 
 
-    Transform Multi punch to a Single:
+Transform Multi punch to a Single:
         Flying J: DedicatedFuelBrand
     		DedicatedFuelBrand.Validation.MaxValue = 1
 		    DedicatedFuelBrand.Categories[..].Style.Control = &H0006
@@ -60,5 +60,3 @@ Err & RI (adding custom instructions and errors):
     LoyaltyFeatureRankErr "Please make sure your ranking is valid"
     info;
 
-
-    

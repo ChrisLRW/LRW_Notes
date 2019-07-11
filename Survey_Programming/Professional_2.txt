@@ -1,0 +1,83 @@
+Creating 10 text boxes w/ Block vs Page:
+    HP Gamer: AdditionalUnaided
+
+    Page
+        MetaData: 
+
+            AdditionalUnaided "And what other brands come to mind?"
+        [
+            ShortName = "S14",
+            FullName = "S14_AdditionalUnaided",
+            RespondentLogic = "Show to respondent.",
+            Logic = "Show to all.",
+            ProgrammerComment = "Programmer Comment: Include 10 text boxes.
+            Do not show question and autocode opt out if respondent selected opt out at S13",
+            RI = "standard"
+        ] loop
+        {
+            _1 "1.",
+            _2 "2.",
+            _3 "3.",
+            _4 "4.",
+            _5 "5.",
+            _6 "6.",
+            _7 "7.",
+            _8 "8.",
+            _9 "9.",
+            _10 "10."
+        } fields - 
+        (
+            TextBoxes ""
+            text [1..20];
+
+        ) expand grid;
+
+        OptOutAdditionalUnaided ""
+        categorical
+        {
+            IDontKnow "I don't know any travel center brands" DK
+        };
+        
+        AdditionalUnaidedWOptOut ""
+        page(
+            AdditionalUnaided,
+            OptOutAdditionalUnaided
+        );
+
+        Routing:
+        ' Sets so that you dont have to answer the text boxes and the optouts 
+            AdditionalUnaided[..].Num.MustAnswer = "False"
+            OptOutAddtionalUnaided.MustAnswer = "False"
+        ' This sets the validation 
+	    AdditionalUnaidedWOptOut.Validation.Function = "TextOptOutInOrder"
+	    AdditionalUnaidedWOptOut.ask()
+ 
+    
+    Block
+        MetaData:
+        TestBlock "" block fields
+        (
+            Looptest "" loop
+            {
+                Hello,
+                bye,
+                hi
+            } fields
+            (
+                test ""
+                text[1..20];
+            ) expand grid;
+            
+            optOut ""
+            categorical
+            {
+                IdontKnow "I Dont Know" DK
+            };
+        );
+        Routing: 
+        TestBlock.ask()
+
+
+
+
+
