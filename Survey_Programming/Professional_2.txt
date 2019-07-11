@@ -30,6 +30,10 @@ Creating 10 text boxes w/ Block vs Page:
             TextBoxes ""
             text [1..20];
 
+'  you need a dummy or else the label in textboxes will not show
+            Dummy ""
+            info;
+
         ) expand grid;
 
         OptOutAdditionalUnaided ""
@@ -77,7 +81,49 @@ Creating 10 text boxes w/ Block vs Page:
         Routing: 
         TestBlock.ask()
 
+Validation Function for adding answers from top to bottom, denying selecting optout while answering,
+Function TextOptOutInOrder(Question, IOM, Attempt)
+	'On Error Resume Next 'keep going after error, to be handled at the end of the function
+	dim Category, ErrFlag, txtAnswer, cat,i, NumberCheck, Counter, CCat, CounterAll,SkippedRows
+	txtAnswer = ""
+	Counter = 0
+	CounterAll = 0
+	NumberCheck = 0
+	ErrFlag = TRUE
+	SkippedRows = FALSE
+	for each cat in Question.Item[0].Categories
+	Ccat = Ccategorical(cat)
+	CounterAll = CounterAll + 1
+		If NOT(Question.Item[0].Item[Ccat].Item[0].IsEmpty()) Then
+			txtAnswer = txtAnswer + Question.Item[0].Item[Ccat].Item[0].Response
+			Counter = Counter + 1
+			if Counter < CounterAll then 
+'				AddErrBanner(Question.Item[0],"Please make sure to fill out the text boxes in order.")
 
+				SkippedRows = true
+			End If
+		End if
+	next
+	
+	if len(Question.Item[1]) < 1 and txtAnswer = "" then
+	      AddErrBanner(Question.Item[0],"Please select ""I dont know any travel center brands"" if you do not have a response.")
+	      'Question.Item[1].Errors.AddNew("Incorrect", IOM.Questions["ErrorBlankResponse"].Label)
+	      ErrFlag = False
+	elseif len(Question.Item[1]) = 1 and txtAnswer <> "" then
+	      AddErrBanner(Question.Item[0],"Please do not select ""I dont know any travel center brands"" with other responses.")
+	      'Question.Item[1].Errors.AddNew("Incorrect", IOM.Questions["ErrorBadCombo"].Label)
+	      ErrFlag = False
+	else
+			if (SkippedRows = true) Then
+				AddErrBanner(Question.Item[0],"Please make sure to fill out the text boxes in order.")
+				'Question.Item[1].Errors.AddNew("Incorrect", IOM.Questions["ErrorIncorrectOrder"].Label)
+			    ErrFlag = False
+			End if
+
+	End if
+	TextOptOutInOrder = ErrFlag
+	If Err.Number<>0 Then errorRoutine(IOM)
+End Function
 
 
 
