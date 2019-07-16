@@ -29,3 +29,21 @@ Categorical stuff: Immersion Survey Activity (P6698)
 Make a ranking a read only so respondents cant change it:
     HP Gamer: C3 BrankRank
     BrandRank[MostLikely].Rank.Style.Control.ReadOnly = True
+
+QuestionFilter: 
+    Kind of like category Filter but for QuestionFilter.
+    In a grid there are cateogries and "GV" these can filter out the GV questions to specific
+    cateogries 
+
+QuestionName: 
+    returns the name of the categorical stub in string form 
+    180760 HP Gamer BrandLoop.Barrier:
+        for each iter1 in brandloop.Categories
+            'this returns te {A} , {B} ...
+            Brandloop[iter1].ask() can work
+        
+        for each cat in brandloop   
+            'this returns LoopName[{A}]
+        
+        so in order to do the ask you have to do 
+            Brandloop[Ccategorical(iter1.questionName)].ask()
