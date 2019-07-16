@@ -1,0 +1,4 @@
+.dms Files can only PROCESS data (DMON Object)
+.mdd can create interviews in metadata and routing (IOM - interview object model)
+
+.mrs file usually for tables BUT it is an open ended script file (there is no dedicated object model)

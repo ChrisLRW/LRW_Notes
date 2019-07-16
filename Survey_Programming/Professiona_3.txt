@@ -1,0 +1,31 @@
+Coded vs Codes
+    HP Gamer: AddtionalUnaidedWOptOut
+    UnaidedAwareness.Response.Coded <> {NoAnswer}
+        Coded is checking if the answer is fill out
+        Codes check is the NoAnswer exists 
+    
+    https://lrw.jiveon.com/thread/1064
+
+Categorical stuff: Immersion Survey Activity (P6698)
+    Name ""
+    Categorical
+    {
+        stub1,
+        stub2,
+        stub3
+    }
+
+    Name.Categories.Label
+
+    or 
+
+    for each x in Name.Categories   
+        x.label 'access the label name
+        'x is each categorical stub per interation
+    next
+
+    .DefinedCategories() - is used for accessing sublist and all stubs as well
+
+Make a ranking a read only so respondents cant change it:
+    HP Gamer: C3 BrankRank
+    BrandRank[MostLikely].Rank.Style.Control.ReadOnly = True

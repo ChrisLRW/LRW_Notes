@@ -36,3 +36,47 @@ and you dont have to create this mdd it will create it when you run the process
 inputsource 
 metadata location: find the one u want the input off
 case data type = data collection data file
+
+In weighting Report
+    orange - to much variance change in your data
+
+Cap data
+    We cap data 
+    if smallest number is 1 the highest number CANNOT be 40 
+    the highest number has to be 10
+
+    wgt.minweight = .32
+    wgt.maxweight = 3.2
+    Talk to your TDM if they change the cap data
+
+===================================================
+
+Ready to Export (Table Shell)
+
+DP files start with "D_Name"
+Table files start with "T_Name"
+Spss files start with "S_Name"
+
+Utilities ->
+    Use scripts we dont frequently use
+KEEP ->
+    We have versions
+Coding 
+    Open end Codings. first specific stuff we want to code
+Data 
+    put our data here 
+Includes
+    -Have all our functions that are Table and DP related
+Logs
+    generate logs that go here
+outputs
+    -tables, spss files outputs go here
+StackTabs
+    u have to know stacking first
+
+D_Export - connect to server and bring data (old because or virus attack)
+D_ExportGateWay - is the new D_Export
+
+Ex.)
+    Find project - GatewayPull (itll have Select queries)
+    go to gate way L:\IT\IPS\Gateway find the file in pull folder

@@ -126,4 +126,174 @@ Function TextOptOutInOrder(Question, IOM, Attempt)
 End Function
 
 
+===================================================================================================
+
+This is for asssigners and is used in DV_Assigned for HP Gamers
+Function Multi Assigned Quota 
+Function MultiAssignQuota(IOM,QVar,QPotentialVar,QName,MaxNum,EligibleList,PriorityList,AssignmentSteps)
+On Error Resume Next 'keep going after error, to be handled at the end of the function
+	'JUST IN CASE this function runs before any other randomization in Routing, calling RanInt() once prevents the first RQ randomization matching metadata-randomized stub order.
+	RanInt()
+	Dim AssignmentStepArray, ThisStep, ThisStepType, ThisStepMax, ThisStepEligible, ThisStepSP
+	Dim Counter
+	Dim quota_pend_result
+	'Clear any current values in QVar, QPotentialVar. Nothing should be stored here before the function runs.
+	QVar = {}
+	QPotentialVar = {}
+	'break AssignmentSteps into an array. Each step in the assignment is a separate item
+	AssignmentStepArray = Split(AssignmentSteps,";")
+	'for each step in the assignment
+	For Counter = 0 to AssignmentStepArray.UBound()
+		ThisStep = Split(AssignmentStepArray[Counter],",")
+		ThisStepType = ThisStep[0]
+		ThisStepMax = MinOf((MaxNum - QVar.AnswerCount()), clong(ThisStep[1]))
+		Select Case ThisStepType
+			Case "R"
+				ThisStepEligible = EligibleList - QVar
+				QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+			Case "RQ"
+				ThisStepEligible = EligibleList - QVar
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpRandom
+					'For random assignments, we temporarily pend more items than needed, then use .Ran() to select within those items without matching metadata-randomized stub order. 
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= QPotentialVar.AnswerCount()
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas).Ran(ThisStepMax)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+			Case "MN"
+				ThisStepEligible = EligibleList - QVar
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpLeastFull
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= ThisStepMax
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+			Case "P"
+				ThisStepEligible = PriorityList * (EligibleList - QVar)
+				QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+			Case "PQ"
+				ThisStepEligible = PriorityList * (EligibleList - QVar)
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpRandom
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= QPotentialVar.AnswerCount()
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas).Ran(ThisStepMax)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+			Case "PMN"
+				ThisStepEligible = PriorityList * (EligibleList - QVar)
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpLeastFull
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= ThisStepMax
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+		'NEW May 2016: Special (step-by-step) priority
+			Case "SP"
+				ThisStepSP = CCategorical(replace(ThisStep[2],"|",","))
+				ThisStepEligible = ThisStepSP * (EligibleList - QVar)
+				QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+			Case "SPQ"
+				ThisStepSP = CCategorical(replace(ThisStep[2],"|",","))
+				ThisStepEligible = ThisStepSP * (EligibleList - QVar)
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpRandom
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= QPotentialVar.AnswerCount()
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas).Ran(ThisStepMax)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+			Case "SPMN"
+				ThisStepSP = CCategorical(replace(ThisStep[2],"|",","))
+				ThisStepEligible = ThisStepSP * (EligibleList - QVar)
+				If IOM.Info.IsDebug Then
+					'debug mode - non-quota random assignment
+					QVar = QVar + ThisStepEligible.Ran(ThisStepMax)
+				else
+					QPotentialVar = ThisStepEligible
+					IOM.quotaengine.QuotaGroups[QName].PendMode = QuotaPendModes.qpLeastFull
+					IOM.quotaengine.QuotaGroups[QName].PendLimit= ThisStepMax
+					quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+					if (IsSet(quota_pend_result, QuotaResultConstants.qrWasPended)) Then
+						QVar = QVar + CreateFilterUsingLeastFullQuota(QPotentialVar.Categories, IOM.QuotaEngine.QuotaGroups[QName].Quotas)
+					'else
+						'don't check for failure, just move on to next step
+					End If
+					'rollback - leave quota empty for next assignment
+					IOM.QuotaEngine.QuotaGroups[QName].Rollback()
+					QPotentialVar = {}
+				end if
+		End Select
+		'Exit loop if Max # of assignments reached, or if all eligible items assigned
+		If QVar.AnswerCount() = MinOf(MaxNum,Len(EligibleList)) then exit for
+	Next
+	'Loop completed - If any categories were assigned, this was successful
+	if QVar.IsEmpty() then
+		MultiAssignQuota = False
+	else
+		'Re-pend to quota, with categories assigned in all steps
+		If not IOM.Info.IsDebug Then
+			QPotentialVar = QVar
+			IOM.quotaengine.QuotaGroups[QName].PendLimit = QVar.AnswerCount()
+			quota_pend_result = IOM.QuotaEngine.QuotaGroups[QName].Pend()
+			'We're NOT checking if this pend was successful, or that all categories assigned were pended.
+			'It's POSSSIBLE that this will result in under-counting.
+		end if
+		MultiAssignQuota = True
+	end if
+If Err.Number<>0 Then errorRoutine(IOM)
+End Function
 
