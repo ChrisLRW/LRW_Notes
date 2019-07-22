@@ -4,3 +4,32 @@ What is the buisness problem?
     The client is the leader in providing endurance athletes with products to support athletic
     performance, but are being threatened by new and emerging brands. The client hopes to gain 
     more insight into the Endurance Athlete to maintain their current channel leadership.
+
+Try to get the most general opinion
+
+S1_Language:
+    Is it good to introduce only Spanish and English?
+
+S6_IntroQC:
+    Clarification: we are going to flag or term someone who has only done 1 or none of the 
+    10 random (5 high and 5 low ) things selected. Because we feel like they wouldnt be suitable
+
+S13_Education:
+    Why are we terminating some high school and post graduate degree?
+
+DV_CurrStudentType:
+    what is this client thing
+
+S30_JobIndustry:
+    Why are we terming teacher and market researcher
+    Rich: Most likely want to term because we are trying to weed out biases 
+
+DV_PathAssigned:
+    QTA_PathAssigned?
+
+Showing screen as red and green
+DT_CAWIEndPage:
+    so we red text people who OQ and green text people who succceed (do red texts still get paid?)
+
+DV_Segment:
+    There is a logic thing that programs all the values and whichever is the highest gets picked 

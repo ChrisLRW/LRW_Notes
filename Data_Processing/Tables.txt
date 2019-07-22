@@ -2,3 +2,76 @@
 .mdd can create interviews in metadata and routing (IOM - interview object model)
 
 .mrs file usually for tables BUT it is an open ended script file (there is no dedicated object model)
+
+
+Outputs:
+    Tabs - tables in excel 
+        Banners (top) - usually the same on every tables
+        Side - changes 
+    .mtd file - Tabs in the Reporter
+    SPSS file - taking the .mdd and .ddf and converts it to a .sav file 
+        .sav file - has all the data 
+
+How to get it:
+    P:/../IPS/Tables/(Shell)
+    github -> Table shell repository 
+
+D_export.dms:
+    OLD (doesnt work anymore) takes in an input and exports it to our table folder
+    
+Includes folder: 
+    You dont touch except maybe Globals
+    Globals
+        Line 16 = Project_Num
+
+D_PrepData.dms:
+    nothing for tables.
+    main purpose is to change the P file to R file 
+    - work in the OnNextCase and metadata section to change from P to R
+    - theres an include for personal coded stuff thats in the coding folder
+
+D_WeightData.mrs:
+    weighting is an mrs not a dms therefore it is super fast (no onnextcase etc...)
+
+D_PRE_Prep_Merge.dms:
+    generic merge scripts. alot of comment code meant to be custom for each scenarios
+    vertical, horizontal merges etc...
+    Rapid Choice always requires Pre Merge data
+
+D_POST_Prep_Merge.dms:
+    post prep merge
+    same thing but starts with Processed data (not pre source data)
+
+S_(scripts):
+    used to generate .ddf to spss Files
+
+STK_(scripts):
+    stacking
+
+T_Run.mrs:
+    Table Script - most important
+    the only one we run. this includes T_banners and T_Table
+    Apply_Weight - true/false  
+    Banner_List - "1,2,3,4"
+    T_Run_Option_Set - custom, html, etc...
+
+Where are the banners getting defined?
+    D_PrepData.dms & T_Banners.mrs
+
+T_Banners.mrs:
+    define the basic characteristics.
+    just fill in the info of each banner
+
+T_Tables:
+    no code , just comments
+    free form place for you to make all your tables
+
+3 Important functions:
+    
+    set table = CreateTable(logMe, tableDoc, bannerNumber, "tableName", "questionName", "questionAxisOverride", "descriptionOverride")
+    'put everything you want to customize onto descriptionAxisOverride 
+    'axis({}) - u can free form an axis
+
+    set table = CreateGridSliceTable
+
+    set table = GridSummaryBase
