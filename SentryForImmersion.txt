@@ -1,0 +1,12 @@
+For Immersion Sentry (NOT PROTOCOL) Dont do people will get mad.
+HEre we are bypassing sentry cause its internal. U NEED TO NOT BYPASS SENTRY.
+
+https://survey.bz?I.Project=P6698
+
+
+
+'Copied from some other test via scribe 
+https://survey.bz?I.Project=P190582&ID=YYYY&smp=99&i.user1=1&i.user2=2&i.user3=1&i.test=1
+
+Theres a jive post on all the parameters:
+	smp - panels 

@@ -1,0 +1,78 @@
+Analysis Author : 07/24/2019
+.sav is the extension 
+SPSS is the software used to open the extension. Does not allow multi punch variables
+
+
+single punch : 
+    1 variable of however many stubs
+
+Multi punch (5 stubs):
+    since it doesnt do multi itll have 5 variables each with {yes, no} 
+
+grid (5 rows 1 column) (single punch): 
+    there will be 5 columns in the SPSS 
+
+grid (N rows M columns) (multi punch):
+    N * M data stored
+
+Why? 
+    Some projects like seeing data as giant excel file.
+    Some clients have software SPSS and not reporter or profesional
+
+Dont:
+    Data Export on Dnet (DONT USE THIS UTILITY)
+
+    If you try to export to SPSS through .dms (i.e punch {yes} to {interestedin}) it wont give you an error until you actually export 
+    to SPSS. When you expot to an MDD and DDF if it doesnt give you that error (so we wouldnt know)
+        itll genereate really really shitty naming (banner11) where if you change the mdd list then itll mess up all the code pertaining
+        to this SPSS.
+    
+
+Analyis:
+    download from voltron
+    open excel
+    load mdd and load button (click the buttons) find RXXX.mdd
+    exclusions - this is where we remove the stubs we want for the export (Remove fro SAV = 1)
+    Analysis Label - shows every variable label for the entire program
+    ShortNames - these get copied from the shortname property in your mdd
+        for numeric grids shortname for a field is an integer
+        fill in al the yellows
+    AnalysisValues - fill in all the yellows (ALOT) (hit the auto analysis button)
+
+    yall should both click project team validation
+
+    SL:
+        if you used a shared list you have to use the same numeric codes! or else you will error
+
+    ShortNames:
+        Numeric Grids: use integers for the fields 
+        Numeric Grids with opt outs are not considered numeric grids: we use short names (A1_Name) etc..
+
+    Character limit: you can usually ignore
+
+    DONT CLICK LOAD SPECS FROM MDD AGAIN!!
+    CLICK COMMIT SPECS TO MDD
+
+
+S_Prep, S_Create:
+    Run S_Prep.mrs (remove variables) creates an SXXXX.mdd file which is a copy of the RXXXX.mdd file (with all the variables dropped)
+    Run S_Create.dms - this actually creates your output -> Outputs folder RXXXX.sav file (zip up this file for delivery)
+
+if we want to update stuff:
+    D_Prep -> (to make changes)
+    Commit -> (Save/Write FIRST) if you dont commit the (i.e banner2) is gone
+    Load -> (Read the new stuff)
+    then: sprep, screate to generate the new SAV
+
+
+As an SE:
+    load the mdd save and send it to them
+        (they press the dark blue to autofill)
+    (they give it back)
+    press orange button 
+    then sprep, screate = SAV file that you send for delivery
+
+HW)
+    download analysis from voltron on jive
+    download table shell from github for Dp
+    try to get a short project and try to do it

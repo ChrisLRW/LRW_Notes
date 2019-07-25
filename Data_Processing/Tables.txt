@@ -75,3 +75,25 @@ T_Tables:
     set table = CreateGridSliceTable
 
     set table = GridSummaryBase
+
+=====================================================================
+
+    Tables Procedure (HW) Updated July 22, 2019:
+        Step 3 - Basic DP, creating DV, simple Cleaning, D_PrepData.dms (You can add DVs in MetaData section)
+        analysis link button - Creating an R Prkect. 
+        Creating R Project (Manually) - 
+            New Project:
+                Analyze Existing data
+                Upload files (.mdd and .ddf)
+                if you follow all the steps correctly and clink on survey reporter it should work!
+
+    T_Generate: generates tables and it wont work until you run prep data because it looks at the R file
+
+    Gateway push : upload data in our projects
+    
+    When you upload the mdd through Dnet (it wont replace!!) itll merge the two together! You have to use gateway push to completely erase mdd files
+    .. copy over the mtd, mdd and ddf files that gateway push folder creates
+
+
+    Stat Testing:
+        T_Banners change the "staTestLevel = 10" for 90% etc... "." stands for skip in the banner thingy

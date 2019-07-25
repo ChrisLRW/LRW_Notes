@@ -1,0 +1,67 @@
+purchase: 36 + other
+touhc : 29 + other
+
+
+function QuestionSplitter(Question, IOM, pagemax, variance)
+dim catholder, listholder, cat, listadd, listlen, catholderlen, nonsub, attemptcounter, output, iter, Matrix[]
+catholder = Question.categories
+iter = 0
+do
+	listadd = {}
+	listholder = {}
+	listlen = 0
+	catholderlen = 0
+	nonsub = false
+	attemptcounter = 0
+	for each cat in catholder
+		'check to see if there are only sublists remaining, mark nonsub true if there are any non sublist categoricals remaining
+		if len(Question.categories[ccategorical(cat)]) = 1 then
+		nonsub = true
+		end if
+		catholderlen = catholderlen + len(Question.Categories[ccategorical(cat)])
+	next
+	
+	if catholderlen <= pagemax + variance then
+		dim subonlycatholder
+		subonlycatholder = catholder
+		for each cat in catholder
+			
+		next
+		catholder = {}
+	else
+		do
+			listadd = catholder.ran(1)
+			attemptcounter = attemptcounter + 1
+			'check if the portion being added is in a sublist
+			if len(Question.Categories[listadd]) > 1 then
+				if len(Question.Categories[listadd]) + len(listholder) > pagemax + variance then
+					'if the current category is going to increase the length beyond the page limit then blank out the add and restart
+					listadd = {}
+				else
+					listholder = listholder + listadd
+					listlen = listlen + len(Question.categories[listadd])
+					'remove the category that was just added from catholder
+					catholder = catholder - listadd
+					'reset the listadd variable
+					listadd = {}
+				end if
+		
+			elseif len(Question.Categories[listadd]) = 1 then
+				'add the category into listholder then remove the category from the catholder before resetting listadd
+				listholder = listholder + listadd
+				listlen = listlen + 1
+				catholder = catholder - listadd
+				listadd = {}
+			end if
+			
+			if attemptcounter >= 500 then
+				exit do
+			end if
+		loop until listlen > pagemax - variance
+	end if
+	'Output the sets of categories into the dim'd array in routing
+	Matrix[iter] = listholder
+	iter = iter + 1
+loop until len(catholder) = 0 ' do this outer loop until the category list is exhausted
+QuestionSplitter = Matrix
+ End Function
